@@ -1,11 +1,13 @@
 import os
 import time
+from web3 import Web3
 import getpass
 import src.rsa as rsa
 import src.banner as banner
 import src.fernet as fernet
 import src.logECC as logECC
 import src.ciphCesar as ciphCesar
+import src.smartcontract as smartcontract
 
 
 # Limpieza de pantalla
@@ -36,6 +38,18 @@ if first_action_check == 1:
 elif first_action_check == 2:
     username = input("User: ")
     password = getpass.getpass()
+    '''
+    # Configuración de la conexión y contrato inteligente
+    network_url = str(input("URL de tu red ethereum"))
+    contract_address = "0x5B38Da6a701c568545dCfcB03FcB875f56beddC4"
+    # Datos de la cuenta del remitente
+    sender_address = str(input("Direccion remitente"))
+    private_keyETH = getpass.getpass("Llave privada remitente")
+    # Conexión a la red de Ethereum
+    w3 = smartcontract.connect_to_ethereum(network_url)
+    # Cargar el contrato inteligente
+    contract = smartcontract.load_contract(w3, contract_address)
+    '''
     if logECC.login(username, password):
         print("Se ha iniciado sesión correctamente")
         time.sleep(2)
@@ -46,9 +60,9 @@ elif first_action_check == 2:
         if ciphMeth == 1:
             message = str(input("Mensaje: "))
             disp = 3
-            cipherText = ciphCesar.encrypt(message, disp)
-            print("Mensaje cifrado:", cipherText)
-
+            cipher_text = ciphCesar.encrypt(message, disp)
+            '''tx_hash = smartcontract.send_text(w3, contract, text_to_send, sender_address, private_keyETH)'''
+            print("Mensaje cifrado:", cipher_text)
         # Metodo asimetrico
         elif ciphMeth == 2:
             private_key, public_key = rsa.generate_key_pair()
@@ -60,16 +74,18 @@ elif first_action_check == 2:
             public_key = rsa.load_public_key(f'keys/{username}_pubk.pem')
 
             message = str(input("Mensaje: "))
-            cipherText = rsa.encrypt(public_key, message)
-            print("Mensaje cifrado:\n", cipherText)
+            cipher_text = rsa.encrypt(public_key, message)
+            '''tx_hash = smartcontract.send_text(contract, text_to_send, sender_address, private_keyETH)'''
+            print("Mensaje cifrado:\n", cipher_text)
         # Metodo extra
         elif ciphMeth == 3:
             fernet.generate_key(username)
             key = fernet.load_key(username)
 
             message = str(input("Mensaje: "))
-            cipherText = fernet.encrypt(message, key)
-            print("Mensaje cifrado:\n", cipherText)
+            cipher_text = fernet.encrypt(message, key)
+            '''tx_hash = smartcontract.send_text(contract, text_to_send, sender_address, private_keyETH)'''
+            print("Mensaje cifrado:\n", cipher_text)
         else:
             print("Accion no valida")
     else:
