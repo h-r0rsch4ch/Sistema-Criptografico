@@ -6,8 +6,8 @@
 - Norberto Medellín López - 1906274
 
 ##### Instalacion:
-###### Para instalar las librerias necesarias es necesario ejecutar el siguiente codigo.
+###### Para instalar las librerias necesarias es debe ejecutar el siguiente codigo.
 ```sh
 pip install -r requirements.txt
 ```
-###### Asegurese de tener la version 3.11.2 de Python.
+###### Asegurese de tener la version 3.11.2 de Python instalada.
