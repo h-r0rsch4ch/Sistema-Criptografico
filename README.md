@@ -10,4 +10,4 @@
 ```sh
 pip install -r requirements.txt
 ```
-###### Asegurese de tener la version 3.11.2 de python.
+###### Asegurese de tener la version 3.11.2 de Python.
