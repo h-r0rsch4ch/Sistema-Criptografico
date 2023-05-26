@@ -4,6 +4,7 @@
 ##### Integrantes:
 - Jair Eliud Flores Puente - 2076332
 - Norberto Medellín López - 1906274
+- Maestro: ALEJANDRO MUNIZ SOLORIO
 
 ##### Instalacion:
 ###### Para instalar las librerias necesarias se debe ejecutar el siguiente codigo.
