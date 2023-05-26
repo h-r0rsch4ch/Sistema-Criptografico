@@ -6,7 +6,7 @@
 - Norberto Medellín López - 1906274
 
 ##### Instalacion:
-###### Para instalar las librerias necesarias es debe ejecutar el siguiente codigo.
+###### Para instalar las librerias necesarias se debe ejecutar el siguiente codigo.
 ```sh
 pip install -r requirements.txt
 ```
